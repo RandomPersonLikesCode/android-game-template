@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
       });
 
   if (!dp.has_value()) {
-    return false;
+    return 1;
   }
 
   if (!Core::Game::create(dp->props_.width_px_, dp->props_.height_px_)) {
