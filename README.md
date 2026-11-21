@@ -1,7 +1,8 @@
 # Game Template
 ## About
 
-A basic structure template to create a game in C++, OpenGL ES, SDL, and others.
+A basic structure template to create an Android game
+in C++, OpenGL ES, SDL, and others.
 
 ### Prerequisites
 
@@ -10,9 +11,8 @@ Tools:
 
 ## Note
 
-This template is not cross platform yet and only tested on
-targeting Android on a Linux machine, feel free to contribute to make this
-template cross platform when targeting to all major platform (Desktop).
+This template is not cross platform in terms of the host
+machine where the program is compiled to target Android.
 
 ## License
 
