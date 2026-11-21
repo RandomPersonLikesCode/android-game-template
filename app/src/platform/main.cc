@@ -6,24 +6,23 @@
 
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
+#include <expected>
 
 int main(int argc, char **argv) {
-  (void)argc;
-  (void)argv;
+  std::expected<Platform::Display, bool> dp =
+      Platform::Display::create(Platform::DisplayProperties{
+        .title = "Game Template",
+        .width = 800,
+        .height = 600,
+      });
 
-  Platform::Display dp = {};
-  dp.props.title = "Game Template";
-  dp.props.width = 800;
-  dp.props.height = 600;
-
-  if (!dp.create()) {
-    dp.destroy();
-    return 1;
+  if (!dp.has_value()) {
+    return false;
   }
 
-  if (!Core::Game::create(dp.props.width_px, dp.props.height_px)) {
+  if (!Core::Game::create(dp->props_.width_px_, dp->props_.height_px_)) {
     Core::Game::destroy();
-    dp.destroy();
+    dp->destroy();
     return 1;
   }
 
@@ -39,10 +38,10 @@ int main(int argc, char **argv) {
       return 1;
     }
 
-    SDL_GL_SwapWindow(dp.window);
+    SDL_GL_SwapWindow(dp->window_);
   }
 
   Core::Game::destroy();
-  dp.destroy();
+  dp->destroy();
   return 0;
 }
