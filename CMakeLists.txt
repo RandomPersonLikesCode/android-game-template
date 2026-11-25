@@ -22,6 +22,11 @@ FetchContent_Declare("sdl3"
   GIT_PROGRESS TRUE
 )
 
+find_library("android" "android")
+find_library("egl" "EGL")
+find_library("gles" "GLESv3")
+find_library("log" "log")
+
 set(SDL_AUDIO FALSE CACHE BOOL "" FORCE)
 set(SDL_CAMERA FALSE CACHE BOOL "" FORCE)
 set(SDL_HIDAPI FALSE CACHE BOOL "" FORCE)

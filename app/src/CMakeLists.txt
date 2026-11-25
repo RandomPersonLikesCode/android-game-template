@@ -1,10 +1,5 @@
 project("main")
 
-find_library("android" "android")
-find_library("egl" "EGL")
-find_library("gles" "GLESv3")
-find_library("log" "log")
-
 add_library("main" SHARED
   # Main
   "platform/main.cc"
