@@ -25,7 +25,7 @@ namespace Core {
     [[nodiscard]]
     auto create(const char *title, int width, int height) -> DisplayError;
 
-    auto get_dimension_in_px() const -> DisplaySizeInPx;
+    auto get_size_in_px() const -> DisplaySizeInPx;
     auto get_window_ptr() const -> SDL_Window *;
 
   private:

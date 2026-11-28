@@ -16,7 +16,7 @@ auto main(int argc, char **argv) -> int {
     return 1;
   }
 
-  if (!Core::Game::create(primary_display.get_dimension_in_px())) {
+  if (!Core::Game::create(primary_display.get_size_in_px())) {
     Core::Game::destroy();
     return 1;
   }

@@ -53,7 +53,7 @@ namespace Core {
     return DisplayError::Ok;
   }
 
-  auto Display::get_dimension_in_px() const -> DisplaySizeInPx {
+  auto Display::get_size_in_px() const -> DisplaySizeInPx {
     int width{};
     int height{};
 
