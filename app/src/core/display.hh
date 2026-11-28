@@ -23,6 +23,9 @@ namespace Core {
 
     // Getters
     auto get_window_ptr() const -> SDL_Window *;
+
+    // TODO: Maybe return a custom struct instead if the intent isn't
+    // clear? idk
     auto get_dimension_in_px() const -> std::pair<int, int>;
 
   private:
