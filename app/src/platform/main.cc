@@ -10,7 +10,7 @@
 auto main(int argc, char **argv) -> int {
   Core::Display primary_display{};
 
-  if (auto error = primary_display.create("Game Template", 800, 500);
+  if (auto error{primary_display.create("Game Template", 800, 500)};
       error != Core::DisplayError::Ok) {
     SDL_Log("Display error: %d", static_cast<int>(error));
   }
@@ -20,7 +20,7 @@ auto main(int argc, char **argv) -> int {
     return 1;
   }
 
-  Core::EventHandler event_handler = {};
+  Core::EventHandler event_handler{};
 
   while (event_handler.is_running) {
     while (SDL_PollEvent(&event_handler.events)) {
