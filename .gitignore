@@ -1,6 +1,7 @@
 build/
 .cache/
 CMakeFiles/
+docs/
 
 *.p12
 
