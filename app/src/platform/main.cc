@@ -13,6 +13,7 @@ auto main(int argc, char **argv) -> int {
   if (auto error{primary_display.create("Game Template", 800, 500)};
       error != Core::DisplayError::Ok) {
     SDL_Log("Display error: %d", static_cast<int>(error));
+    return 1;
   }
 
   if (!Core::Game::create(primary_display.get_dimension_in_px())) {
@@ -22,14 +23,11 @@ auto main(int argc, char **argv) -> int {
 
   Core::EventHandler event_handler{};
 
-  while (event_handler.is_running) {
-    while (SDL_PollEvent(&event_handler.events)) {
-      event_handler.handle_events();
-    }
+  while (event_handler.is_app_running()) {
+    event_handler.handle_events();
 
     if (!Core::Game::update(0.0f)) {
-      event_handler.is_running = false;
-      return 1;
+      break;
     }
 
     SDL_GL_SwapWindow(primary_display.get_window_ptr());

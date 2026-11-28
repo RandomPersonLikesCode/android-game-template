@@ -5,10 +5,14 @@
 #include <SDL3/SDL.h>
 
 namespace Core {
-  struct EventHandler {
+  class EventHandler {
+  public:
+    auto handle_events() -> void;
+
+    auto is_app_running() const -> bool;
+
+  private:
     SDL_Event events{};
     bool is_running{true};
-
-    auto handle_events() -> void;
   };
 } // namespace Core

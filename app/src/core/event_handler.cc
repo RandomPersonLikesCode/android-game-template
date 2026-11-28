@@ -6,9 +6,13 @@
 
 namespace Core {
   auto EventHandler::handle_events() -> void {
-    switch (events.type) {
-      case SDL_EVENT_QUIT:
-        is_running = false;
+    while (SDL_PollEvent(&events)) {
+      switch (events.type) {
+        case SDL_EVENT_QUIT:
+          is_running = false;
+      }
     }
   }
+
+  auto EventHandler::is_app_running() const -> bool { return is_running; }
 } // namespace Core

@@ -54,8 +54,6 @@ namespace Core {
     return DisplayError::Ok;
   }
 
-  auto Display::get_window_ptr() const -> SDL_Window * { return window; }
-
   auto Display::get_dimension_in_px() const -> std::pair<int, int> {
     int width{};
     int height{};
@@ -64,4 +62,6 @@ namespace Core {
 
     return {width, height};
   }
+
+  auto Display::get_window_ptr() const -> SDL_Window * { return window; }
 } // namespace Core

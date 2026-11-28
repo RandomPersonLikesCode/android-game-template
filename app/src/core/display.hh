@@ -21,12 +21,10 @@ namespace Core {
     [[nodiscard]]
     auto create(const char *title, int width, int height) -> DisplayError;
 
-    // Getters
-    auto get_window_ptr() const -> SDL_Window *;
-
-    // TODO: Maybe return a custom struct instead if the intent isn't
-    // clear? idk
+    // TODO: Maybe return a custom struct instead of std::pair if the
+    // intent isn't clear? idk
     auto get_dimension_in_px() const -> std::pair<int, int>;
+    auto get_window_ptr() const -> SDL_Window *;
 
   private:
     SDL_Window *window{nullptr};
