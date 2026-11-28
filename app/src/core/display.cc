@@ -3,7 +3,6 @@
 #include "./display.hh"
 
 #include <SDL3/SDL.h>
-#include <utility>
 
 namespace Core {
   Display::~Display() noexcept {
@@ -54,13 +53,16 @@ namespace Core {
     return DisplayError::Ok;
   }
 
-  auto Display::get_dimension_in_px() const -> std::pair<int, int> {
+  auto Display::get_dimension_in_px() const -> DisplaySizeInPx {
     int width{};
     int height{};
 
     SDL_GetWindowSizeInPixels(window, &width, &height);
 
-    return {width, height};
+    return {
+      .width = width,
+      .height = height,
+    };
   }
 
   auto Display::get_window_ptr() const -> SDL_Window * { return window; }

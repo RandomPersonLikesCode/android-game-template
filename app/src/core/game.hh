@@ -2,11 +2,11 @@
 
 #pragma once
 
-#include <utility>
+#include "./display.hh"
 
 namespace Core {
   namespace Game {
-    auto create(std::pair<int, int> window_size) -> bool;
+    auto create(DisplaySizeInPx display_size) -> bool;
     auto update(float dt) -> bool;
     auto destroy() -> void;
   } // namespace Game

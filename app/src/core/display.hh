@@ -3,7 +3,6 @@
 #pragma once
 
 #include <SDL3/SDL.h>
-#include <utility>
 
 namespace Core {
   enum class DisplayError {
@@ -14,6 +13,11 @@ namespace Core {
     DoubleInitializationError
   };
 
+  struct DisplaySizeInPx {
+    int width{0};
+    int height{0};
+  };
+
   class Display {
   public:
     ~Display() noexcept;
@@ -21,9 +25,7 @@ namespace Core {
     [[nodiscard]]
     auto create(const char *title, int width, int height) -> DisplayError;
 
-    // TODO: Maybe return a custom struct instead of std::pair if the
-    // intent isn't clear? idk
-    auto get_dimension_in_px() const -> std::pair<int, int>;
+    auto get_dimension_in_px() const -> DisplaySizeInPx;
     auto get_window_ptr() const -> SDL_Window *;
 
   private:
