@@ -3,13 +3,13 @@ project("main")
 add_library("main" SHARED
   # Main
   "platform/main.cc"
-  "platform/display.cc"
-  "platform/event_handler.cc"
+  "core/display.cc"
   "core/game.cc"
+  "core/event_handler.cc"
 
-  "platform/display.hh"
-  "platform/event_handler.hh"
+  "core/display.hh"
   "core/game.hh"
+  "core/event_handler.hh"
 
   # Third-party
 )

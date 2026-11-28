@@ -3,18 +3,21 @@
 #include "./game.hh"
 
 #include <GLES3/gl32.h>
+#include <utility>
 
-bool Core::Game::create(int width, int height) {
-  glViewport(0, 0, width, height);
-  glClearColor(0.52f, 0.8f, 0.92f, 1.0f);
+namespace Core {
+  auto Game::create(std::pair<int, int> window_size) -> bool {
+    glViewport(0, 0, window_size.first, window_size.second);
+    glClearColor(0.52f, 0.8f, 0.92f, 1.0f);
 
-  return true;
-}
+    return true;
+  }
 
-bool Core::Game::update() {
-  glClear(GL_COLOR_BUFFER_BIT);
+  auto Game::update(float dt) -> bool {
+    glClear(GL_COLOR_BUFFER_BIT);
 
-  return true;
-}
+    return true;
+  }
 
-void Core::Game::destroy() {};
+  auto Game::destroy() -> void {};
+} // namespace Core

@@ -2,10 +2,12 @@
 
 #pragma once
 
+#include <utility>
+
 namespace Core {
   namespace Game {
-    bool create(int width, int height);
-    bool update();
-    void destroy();
+    auto create(std::pair<int, int> window_size) -> bool;
+    auto update(float dt) -> bool;
+    auto destroy() -> void;
   } // namespace Game
 } // namespace Core

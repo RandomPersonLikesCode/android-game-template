@@ -1,47 +1,40 @@
 // SPDX-License-Identifier: MIT
 
+#include "../core/display.hh"
+#include "../core/event_handler.hh"
 #include "../core/game.hh"
-#include "./display.hh"
-#include "./event_handler.hh"
 
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
-#include <expected>
 
-int main(int argc, char **argv) {
-  std::expected<Platform::Display, bool> dp =
-      Platform::Display::create(Platform::DisplayProperties{
-        .title = "Game Template",
-        .width = 800,
-        .height = 600,
-      });
+auto main(int argc, char **argv) -> int {
+  Core::Display primary_display{};
 
-  if (!dp.has_value()) {
-    return 1;
+  if (auto error = primary_display.create("Game Template", 800, 500);
+      error != Core::DisplayError::Ok) {
+    SDL_Log("Display error: %d", static_cast<int>(error));
   }
 
-  if (!Core::Game::create(dp->props_.width_px_, dp->props_.height_px_)) {
+  if (!Core::Game::create(primary_display.get_dimension_in_px())) {
     Core::Game::destroy();
-    dp->destroy();
     return 1;
   }
 
-  Platform::EventHandler event_handler = {};
+  Core::EventHandler event_handler = {};
 
   while (event_handler.is_running) {
     while (SDL_PollEvent(&event_handler.events)) {
       event_handler.handle_events();
     }
 
-    if (!Core::Game::update()) {
+    if (!Core::Game::update(0.0f)) {
       event_handler.is_running = false;
       return 1;
     }
 
-    SDL_GL_SwapWindow(dp->window_);
+    SDL_GL_SwapWindow(primary_display.get_window_ptr());
   }
 
   Core::Game::destroy();
-  dp->destroy();
   return 0;
 }
