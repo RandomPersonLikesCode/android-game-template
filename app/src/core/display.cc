@@ -37,13 +37,13 @@ namespace Core {
     window = SDL_CreateWindow(title, width, height,
                               SDL_WINDOW_FULLSCREEN | SDL_WINDOW_OPENGL);
 
-    if (!window) {
+    if (window == nullptr) {
       return DisplayError::WindowCreationError;
     }
 
     context = SDL_GL_CreateContext(window);
 
-    if (!context) {
+    if (context == nullptr) {
       return DisplayError::ContextCreationError;
     }
 

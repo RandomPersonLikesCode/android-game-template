@@ -10,6 +10,8 @@ namespace Core {
       switch (events.type) {
         case SDL_EVENT_QUIT:
           is_running = false;
+
+        default:
       }
     }
   }

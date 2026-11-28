@@ -1,0 +1,8 @@
+Checks: >
+  -*,
+  cppcoreguidelines-*,
+  bugprone-*,
+  modernize-*,
+  performance-*,
+  readability-*,
+  -modernize-use-nodiscard

@@ -14,7 +14,7 @@ namespace Core {
     return true;
   }
 
-  auto Game::update(float dt) -> bool {
+  auto Game::update(float delta) -> bool {
     glClear(GL_COLOR_BUFFER_BIT);
 
     return true;
